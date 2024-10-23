@@ -1,7 +1,8 @@
 import './index.css'
+import { AppRouter } from './routes'
 
 function App() {
-  return <main className="container"></main>
+  return <AppRouter />
 }
 
 export default App
