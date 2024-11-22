@@ -1,1 +1,5 @@
+export { ExampleButtons } from './examples/buttons'
 export { Home } from './home'
+export { NotFound } from './not-found'
+export { Projects } from './projects'
+export { Puzzle } from './puzzle'
