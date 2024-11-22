@@ -3,14 +3,9 @@ import { IconType } from 'react-icons'
 
 import { ButtonProps, buttonVariants } from './styles'
 
-const iconScales = {
-  sm: 20,
-  md: 24,
-  lg: 28,
-  xl: 28,
-}
+const iconScales = { sm: 20, md: 24, lg: 28, xl: 28 }
 
-type Props = ButtonProps &
+export type Props = ButtonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
     Icon?: IconType
   }
