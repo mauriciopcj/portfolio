@@ -1,0 +1,16 @@
+export const THEME_CUSTOM_COLORS = [
+  'body',
+  'sidebar',
+  'primary',
+  'primary-light',
+  'toggle',
+  'text',
+  'body-dark',
+  'sidebar-dark',
+  'primary-dark',
+  'primary-light-dark',
+  'toggle-dark',
+  'text-dark',
+  'puzzle-correct',
+  'puzzle-tile',
+]
