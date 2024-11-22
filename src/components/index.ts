@@ -1,1 +1,7 @@
-export { Button } from './ui/button/index'
+export { ProjectCard, ProjectCardLoader } from './project-card'
+export type { Props as ProjectCardProps } from './project-card'
+export { PuzzleBoard } from './puzzle/puzzle-board'
+export { Sidebar } from './sidebar'
+export type { SidebarListItemProps } from './sidebar'
+export { Button } from './ui/button'
+export type { Props as ButtonProps } from './ui/button'
