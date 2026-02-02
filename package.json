@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://mauriciopcj.github.io",
+  "homepage": "https://mauriciopcj.github.io/portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "format": "prettier ./src --write",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "resolutions": {
     "@types/react": "^18.3.10"
