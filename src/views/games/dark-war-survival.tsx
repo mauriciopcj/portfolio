@@ -6,8 +6,11 @@ export const DarkWarSurvival = () => {
   const [finishDate, setFinishDate] = useState(new Date())
   const [percent, setPercent] = useState('')
   const [time, setTime] = useState('')
+  const [time2, setTime2] = useState('')
+  const [date, setDate] = useState('')
+  const [showDoDate, setShowDoDate] = useState(false)
 
-  function calcularDataFutura(): Date {
+  function calcularTempoTotalSegundos() {
     const d = Number(days) || 0
     const [hour, minutes] = time.split(':')
     const h = Number(hour) || 0
@@ -15,21 +18,33 @@ export const DarkWarSurvival = () => {
 
     const totalSegundos = d * 86400 + h * 3600 + m * 60
 
-    const segundosComDesconto = totalSegundos * (1 - Number(percent) / 100)
+    return totalSegundos * (1 - Number(percent) / 100)
+  }
 
-    const agora = Date.now()
+  function calcularDataFutura(): Date {
+    const segundos = calcularTempoTotalSegundos()
+    return new Date(Date.now() + segundos * 1000)
+  }
 
-    const dataFutura = new Date(agora + segundosComDesconto * 1000)
+  function calcularDataInicio(): Date | null {
+    if (!date || !time2) return null
 
-    return dataFutura
+    const segundos = calcularTempoTotalSegundos()
+
+    const dataFinal = new Date(`${date}T${time2}`)
+
+    return new Date(dataFinal.getTime() - segundos * 1000)
   }
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    const futureDate = calcularDataFutura()
-
-    setFinishDate(futureDate)
+    if (showDoDate) {
+      const inicio = calcularDataInicio()
+      if (inicio) setFinishDate(inicio)
+    } else {
+      setFinishDate(calcularDataFutura())
+    }
   }
 
   return (
@@ -76,6 +91,39 @@ export const DarkWarSurvival = () => {
             type="number"
             value={percent}
           />
+
+          <div className="flex gap-2">
+            <input
+              id="do-date"
+              type="checkbox"
+              onChange={(e) => setShowDoDate(e.target.checked)}
+            />
+            <label htmlFor="do-date">Definir uma data de conclusão!</label>
+          </div>
+
+          {showDoDate && (
+            <>
+              <label className="dark:text-text-dark">Dia:</label>
+              <input
+                className="rounded-md border border-gray-400"
+                id="date"
+                name="date"
+                onChange={(e) => setDate(e.target.value)}
+                type="date"
+                value={date}
+              />
+
+              <label className="dark:text-text-dark">Hora:</label>
+              <input
+                className="rounded-md border border-gray-400"
+                id="time"
+                name="time"
+                onChange={(e) => setTime2(e.target.value)}
+                type="time"
+                value={time2}
+              />
+            </>
+          )}
         </fieldset>
 
         <Button className="mt-5 self-center" type="submit">
@@ -83,7 +131,11 @@ export const DarkWarSurvival = () => {
         </Button>
 
         <div className="flex flex-col items-center justify-center gap-2 dark:text-text-dark">
-          <p className="text-center">Sua construção ficará pronta no dia</p>
+          <p className="text-center">
+            {showDoDate
+              ? 'Inicie a construção em:'
+              : 'Sua construção ficará pronta em:'}
+          </p>
           <p className="text-lg font-bold">{finishDate.toLocaleDateString()}</p>
           <p className="">ás</p>
           <p className="text-lg font-bold">{finishDate.toLocaleTimeString()}</p>

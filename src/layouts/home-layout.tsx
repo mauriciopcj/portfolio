@@ -1,9 +1,8 @@
 import { FC, Fragment, useState } from 'react'
-import { IoIosLogOut } from 'react-icons/io'
 import { IoExtensionPuzzleOutline, IoHomeOutline } from 'react-icons/io5'
 import { Outlet } from 'react-router-dom'
 
-import { Sidebar, SidebarListItemProps } from '../components'
+import { SidebarListItemProps } from '../components'
 import { URLS } from '../routes/paths'
 import { cn } from '../utils'
 
@@ -12,7 +11,7 @@ interface Props {
 }
 
 export const HomeLayout: FC<Props> = ({ children }) => {
-  const [close, setClose] = useState(false)
+  const [close, setClose] = useState(true)
 
   const toggleClose = () => setClose((old) => !old)
 
@@ -70,7 +69,7 @@ export const HomeLayout: FC<Props> = ({ children }) => {
 
   return (
     <Fragment>
-      <Sidebar.Root close={close}>
+      {/* <Sidebar.Root close={close}>
         <Sidebar.Header
           close={close}
           subtitle="Web developer"
@@ -89,12 +88,13 @@ export const HomeLayout: FC<Props> = ({ children }) => {
             <Sidebar.DarkModeSwitch close={close} />
           </div>
         </Sidebar.Content>
-      </Sidebar.Root>
+      </Sidebar.Root> */}
 
       <main
         className={cn(
           'transition-3 absolute left-[250px] top-0 min-h-screen w-[calc(100%-250px)] bg-body dark:bg-body-dark',
-          { 'left-[78px] h-screen w-[calc(100%-78px)]': close },
+          { 'left-0 h-screen w-full': close },
+          // { 'left-[78px] h-screen w-[calc(100%-78px)]': close },
         )}
       >
         {children || <Outlet />}
