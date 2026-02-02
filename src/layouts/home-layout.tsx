@@ -1,9 +1,6 @@
 import { FC, Fragment, useState } from 'react'
-import { GrProjects } from 'react-icons/gr'
 import { IoIosLogOut } from 'react-icons/io'
 import { IoExtensionPuzzleOutline, IoHomeOutline } from 'react-icons/io5'
-import { MdCode } from 'react-icons/md'
-import { TbLetterB } from 'react-icons/tb'
 import { Outlet } from 'react-router-dom'
 
 import { Sidebar, SidebarListItemProps } from '../components'
@@ -25,10 +22,15 @@ export const HomeLayout: FC<Props> = ({ children }) => {
       path: URLS.home,
       icon: IoHomeOutline,
     },
+    // {
+    //   label: 'Projects',
+    //   path: URLS.projects,
+    //   icon: GrProjects,
+    // },
     {
-      label: 'Projects',
-      path: URLS.projects,
-      icon: GrProjects,
+      label: 'Darkwar Survival',
+      path: URLS.darkWarSurvival,
+      icon: IoExtensionPuzzleOutline,
     },
     {
       label: 'Puzzles',
@@ -40,20 +42,30 @@ export const HomeLayout: FC<Props> = ({ children }) => {
           icon: IoExtensionPuzzleOutline,
           path: URLS.puzzleFifteen,
         },
-      ],
-    },
-    {
-      label: 'Examples',
-      path: URLS.examples,
-      icon: MdCode,
-      nestedItems: [
         {
-          label: 'Buttons',
-          path: URLS.examplesButtons,
-          icon: TbLetterB,
+          label: 'Memory',
+          icon: IoExtensionPuzzleOutline,
+          path: URLS.gameMemory,
         },
       ],
     },
+    // {
+    //   label: 'Examples',
+    //   path: URLS.examples,
+    //   icon: MdCode,
+    //   nestedItems: [
+    //     {
+    //       label: 'Buttons',
+    //       path: URLS.examplesButtons,
+    //       icon: TbLetterB,
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: 'Time Record',
+    //   path: URLS.timeRecord,
+    //   icon: MdAccessTime,
+    // },
   ]
 
   return (
@@ -81,7 +93,7 @@ export const HomeLayout: FC<Props> = ({ children }) => {
 
       <main
         className={cn(
-          'transition-3 absolute left-[250px] top-0 h-screen w-[calc(100%-250px)] bg-body dark:bg-body-dark',
+          'transition-3 absolute left-[250px] top-0 min-h-screen w-[calc(100%-250px)] bg-body dark:bg-body-dark',
           { 'left-[78px] h-screen w-[calc(100%-78px)]': close },
         )}
       >

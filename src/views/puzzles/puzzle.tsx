@@ -1,4 +1,4 @@
-import { PuzzleBoard } from '../components/puzzle/puzzle-board'
+import { PuzzleBoard } from '../../components/puzzle/puzzle-board'
 
 export const Puzzle = () => {
   return (
